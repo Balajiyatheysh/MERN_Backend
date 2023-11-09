@@ -1,0 +1,20 @@
+*.env
+.env
+.env.*
+/.vscode
+/node_modules
+./dist
+generators
+coverage
+build
+# fixtures
+LICENSE
+README.md
+.editorconfig
+.eslintignore
+.gitattributes
+.gitignore
+.gitkeep
+.prettierignore
+*.ejs
+*.snap
