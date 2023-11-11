@@ -1,10 +1,24 @@
+const asyncHandler = (requestHandler)=>{
+  (req, res, next)=>{
+    Promise.resolve(requestHandler(req, res, next)).catch((error)=>{
+      next(error);
+    });
+  };
+};
+
+export {asyncHandler};
+
+
+
+
+
 // const asyncHandler =()=>{}
 // const asyncHandler =(fn)=>()=>{}
 // const asyncHandler =(fn)=>async()=>{}
 
 
 
-
+//this asyncHandler is a higherorder function
 // const asyncHandler = (fn) = async (req, res, next) => {
 //   try {
 //     await fn(req, res, next);
@@ -15,13 +29,3 @@
 //     });
 //   };
 // };
-
-const asyncHandler = (requestHandler)=>{
-  (req, res, next)=>{
-    Promise.resolve(requestHandler(req, res, next)).catch((error)=>{
-      next(error);
-    });
-  };
-};
-
-export {asyncHandler}
