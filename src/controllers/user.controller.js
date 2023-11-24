@@ -27,13 +27,14 @@ const registerUser = asyncHandler(async (req, res)=>{
   if (existedUser) {
     throw new ApiError(400, "User already exists with the provided email or username")
   }
-  console.log(req.files)
+  console.log(req.files) //i'm getting [Object: null prototype]
 
   const avatarLocalPath = req.files?.avatar[0]?.path;
   //const coverImageLocalPath = req.files?.coverImage[0]?.path;
   let coverImageLocalPath;
-  if (req.files && Array.isArray(req.files.coverImage)&& req.files.civerImage.length >0) {
-    coverImageLocalPath = req.files.coverImage[0].path
+  if (req.files && Array.isArray(req.files.coverImage)&& req.files.coverImage.length >0) {
+    coverImageLocalPath = req.files?.coverImage[0]?.path
+    console.log("images uploaded successfully")
   }
 
   if (!avatarLocalPath) {
