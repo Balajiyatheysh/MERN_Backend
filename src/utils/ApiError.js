@@ -22,4 +22,4 @@ class ApiError extends Error{
 
 export {ApiError}
 
-//here we are oerriding the Error class so we are customizing the how ApiErrors are been handeled
+//here we are overriding the Error class so we are customizing the how ApiErrors are been handeled
