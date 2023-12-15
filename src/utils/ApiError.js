@@ -9,7 +9,7 @@ class ApiError extends Error{
     this.statusCode = statusCode;
     this.data = null; //know about this.data from nodejs assignment
     this.message = message;
-    this.success = false; //bcz we are handeling Apierror and not response
+    this.success = false; //because we are handeling Apierror and not response
     this.errors = errors;
 
     if (stack) {
