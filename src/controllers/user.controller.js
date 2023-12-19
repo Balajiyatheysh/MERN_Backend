@@ -3,6 +3,23 @@ import {ApiError} from "../utils/ApiError.js"
 import {User} from "../models/user.model.js"
 import {uploadOnCloudinary} from "../utils/Cloudinary.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
+import  Jwt  from "jsonwebtoken";
+
+const generateAccessAndRefreshsTokens = async (userId)=>{
+  try {
+    const user = await User.findById(userId);
+    const accesstoken = user.generateAccessToken();
+    const refreshtoken = user.generateRefreshToken();
+
+    user.refreshtoken = refreshtoken;
+    await user.save({ validateBeforeSave: false });
+
+    return {accesstoken, refreshtoken}
+  } catch (error) {
+    throw new ApiError(500, "Error while generating access and refresh tokens")
+  }
+}
+
 
 const registerUser = asyncHandler(async (req, res)=>{
   //get user details from frontend
