@@ -5,6 +5,7 @@ import { uploadOnCloudinary } from "../utils/Cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import Jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+
 //user controllers
 const generateAccessAndRefreshsTokens = async (userId) => {
   try {
@@ -171,9 +172,9 @@ const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
     {
-      $set: {
-        refreshToken: null,
-      },
+      $unset:{
+        refreshtoken: 1 //this removes the field from document
+      }
     },
     {
       new: true,
